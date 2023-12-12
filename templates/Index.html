@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <h3 style="color: black";>{% block title %} This is the place for your wine quality prediction {% endblock %}</h3>
+    <hr>
+    {% for message in messages %}
+        <div class='message'>
+            <br>
+            <p>{{ message['column1'] }}</p>
+            <p>{{ message['column2'] }}</p>
+            <p>{{ message['column3'] }}</p>
+            <p>{{ message['column4'] }}</p>
+            <p>{{ message['column5'] }}</p>
+            <br>
+            <p style="color: black";><b> {{ message['prediction'] }}</b></p>
+            <hr>
+        </div>
+    {% endfor %}
+    
+{% endblock %}

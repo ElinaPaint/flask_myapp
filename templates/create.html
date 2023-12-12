@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Fill the features {% endblock %}</h1>
+    <form method="post">
+        <label for="OH">Alcohol</label>
+        <p>Give a value between 14.9 - 8.4</p>
+        <input type="text" name="OH"
+               value="{{ request.form['OH'] }}"></input>
+        <br>
+        <br>
+        <label for="sulphates">Sulphates</label>
+        <p>Give a value between 2.0 - 0.33</p>
+        <input type="text" name="sulphates"
+               value="{{ request.form['sulphates'] }}"></input>
+        <br>
+        <br>
+        <label for="total_SO₂">Total_SO₂</label>
+        <p>Give a value between 289.0 - 6.0</p>
+        <input type="text" name="total_SO₂"
+               value="{{ request.form['total_SO₂'] }}"></input>
+        <br>
+        <br>
+        <label for="vol_acid">Volatile-Acidity</label>
+        <p>Give a value between 1.58 - 0.12</p>
+        <input type="text" name="vol_acid"
+               value="{{ request.form['vol_acid'] }}"></input>
+        <br>
+        <br>
+        <label for="dens">Density</label>
+        <p>Give a value between 1.00369 - 0.99007</p>
+        <input type="text" name="dens"
+               value="{{ request.form['dens'] }}"></input>
+        <br>
+        <br>
+        <button style="background-color: #e1e1cc ;" type="submit">Predict</button>
+    </form>
+    
+{% endblock %}
