@@ -23,7 +23,7 @@ url = "postgresql://postgres:123456789@database-1.cczybszaj7ev.eu-north-1.rds.am
 engine = create_engine(url)
 
 # Grafica
-grafica = pd.read_csv('csv_Data.csv')
+grafica = pd.read_csv('csv_data.csv')
 
 # Flask, needed
 app = Flask(__name__)
