@@ -6,7 +6,6 @@ from flask import Flask, render_template, request, url_for, flash, redirect
 import json
 import pickle
 from sqlalchemy import create_engine, text
-import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 from sqlalchemy import create_engine, text
@@ -147,4 +146,5 @@ def graph():
     # Pass the base64 string to the HTML template
     return render_template('untitled1.html', plot_url=plot_url)
 
-app.run()
+if __name__ == "__main__":
+	app.run()
