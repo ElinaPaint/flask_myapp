@@ -11,15 +11,17 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sqlalchemy import create_engine, text
 from datetime import datetime 
+from io import BytesIO
+import base64
 
 # pickle
 pickled_file_path = 'finished_model_me.pkl'
 with open(pickled_file_path, 'rb') as file:
     model = pickle.load(file)
 
-engine = create_engine("sqlite:///db.db")
-# url = "postgresql://postgres:newpassword@database-1.cczybszaj7ev.eu-north-1.rds.amazonaws.com:5432/postgres"
-# engine = create_engine(url)
+# engine = create_engine("sqlite:///db.db")
+url = "postgresql://postgres:123456789@database-1.cczybszaj7ev.eu-north-1.rds.amazonaws.com:5432/postgres"
+engine = create_engine(url)
 
 # Grafica
 grafica = pd.read_csv('csv_Data.csv')
@@ -126,13 +128,23 @@ def check_logs():
     return pd.read_sql(query, con=engine).to_html()
 
 
+
 @app.route('/Graph', methods=['GET'])
 def graph():
-
     plt.figure(figsize=(6,6))
-    plt.bar(x = grafica.columns, height = grafica.values[0])
+    plt.bar(x=grafica.columns, height=grafica.values[0])
     plt.xlabel("Features")
-    plt.ylabel("Importance");
-    return render_template('untitled1.html', name = plt.show())
+    plt.ylabel("Importance")
+    
+    # Save plot to a BytesIO object
+    img = BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    
+    # Encode plot to base64 string
+    plot_url = base64.b64encode(img.getvalue()).decode()
+
+    # Pass the base64 string to the HTML template
+    return render_template('untitled1.html', plot_url=plot_url)
 
 app.run()
